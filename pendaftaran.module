@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains pendaftaran.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pendaftaran_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pendaftaran module.
+    case 'help.page.pendaftaran':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Data Pendaftaran siswa') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function pendaftaran_user_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  
+  if($entity->hasRole('siswa')){
+    $nama = $entity->getUsername();    
+	$query = \Drupal::database()->select( 'data_akademik','d')
+	  ->fields('d')
+	  ->fields('u', array('name', 'mail'))
+	  ->range('0', '1')
+	  ->condition('d.nisn', $nama, '=');
+    $query->leftjoin('users_field_data', 'u', 'd.nisn = u.name');
+	$ids = $query->execute()->fetchAll();
+	$data = reset($ids);
+  }
+
+}

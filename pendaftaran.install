@@ -1,0 +1,157 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the pendaftaran module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Creates some default entries on this module custom table.
+ *
+ * @see hook_install()
+ *
+ * @ingroup pendaftaran
+ */
+function pendaftaran_install() {
+  // Insert some example data into our schema.
+  $entries = [
+    [
+      'nisn' => '12345678901234',
+      'uid' => '1',
+      'nama' => 'Nama 1',
+      'nama_ayah' => 'Aayah 1',
+      'tempat_lahir' => 'tempat_lahir 1',
+      'tgl_lahir' => '20-01-2000',
+      'matematika' => '70.5',
+      'ipa' => '40.5',
+      'ips' => '90.5',
+      'english' => '78.5',
+      'indonesia' => '90.6',
+    ],
+    [
+      'nisn' => '12345678901235',
+      'uid' => '1',
+      'nama' => 'Nama 2',
+      'nama_ayah' => 'Aayah 2',
+      'tempat_lahir' => 'tempat_lahir 2',
+      'tgl_lahir' => '21-04-2001',
+      'matematika' => '60.5',
+      'ipa' => '48.15',
+      'ips' => '60.52',
+      'english' => '66.5',
+      'indonesia' => '81.6',
+    ],
+  ];
+
+  $connection = \Drupal::database();
+  foreach ($entries as $entry) {
+    $connection->insert('data_akademik')->fields($entry)->execute();
+  }
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup pendaftaran
+ */
+function pendaftaran_schema() {
+  $schema['data_akademik'] = [
+    'description' => 'Table referensi Data akademik siswa.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique person ID.',
+      ],
+      'nisn' => [
+        'type' => 'varchar',
+        'length' => 191,
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique person ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Creator user's {users}.uid",
+      ],
+      'nama' => [
+        'type' => 'varchar',
+        'length' => 191,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Nama dari siswa.',
+      ],
+      'nama_ayah' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Nama ayah dari siswa.',
+      ],
+      'tempat_lahir' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Tempat lahir dari siswa.',
+      ],
+      'tgl_lahir' => [
+        'type' => 'varchar',
+        'length' => 191,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Surname dari siswa.',
+      ],
+      'matematika' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+      'ipa' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+      'ips' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+      'english' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+      'indonesia' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+    ],
+    'primary key' => ['id'],
+    'unique keys' => ['nisn'=>['nisn']],
+    'indexes' => [
+      'nama' => ['nama'],
+      'tgl_lahir' => ['tgl_lahir'],
+    ],
+  ];
+
+  return $schema;
+}

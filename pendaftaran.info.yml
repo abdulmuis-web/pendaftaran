@@ -1,0 +1,8 @@
+name: 'Pendaftaran'
+type: module
+description: 'Data Pendaftaran siswa'
+core: 8.x
+package: 'PPDB'
+dependencies:
+  - wilayah_indonesia_vilage
+  - kompetensi_keahlian

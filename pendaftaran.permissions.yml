@@ -1,0 +1,30 @@
+add pendaftaran entities:
+  title: 'Create new Pendaftaran entities'
+
+administer pendaftaran entities:
+  title: 'Administer Pendaftaran entities'
+  description: 'Allow to access the administration form to configure Pendaftaran entities.'
+  restrict access: true
+
+delete pendaftaran entities:
+  title: 'Delete Pendaftaran entities'
+
+edit pendaftaran entities:
+  title: 'Edit Pendaftaran entities'
+
+view published pendaftaran entities:
+  title: 'View published Pendaftaran entities'
+
+view unpublished pendaftaran entities:
+  title: 'View unpublished Pendaftaran entities'
+
+view all pendaftaran revisions:
+  title: 'View all Pendaftaran revisions'
+
+revert all pendaftaran revisions:
+  title: 'Revert all Pendaftaran revisions'
+  description: 'Role requires permission <em>view Pendaftaran revisions</em> and <em>edit rights</em> for pendaftaran entities in question or <em>administer pendaftaran entities</em>.'
+
+delete all pendaftaran revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Pendaftaran revisions</em> and <em>delete rights</em> for pendaftaran entities in question or <em>administer pendaftaran entities</em>.'

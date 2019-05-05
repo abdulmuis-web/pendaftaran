@@ -1,0 +1,14 @@
+
+# Pendaftaran menu items definition
+entity.pendaftaran.collection:
+  title: 'Pendaftaran list'
+  route_name: entity.pendaftaran.collection
+  description: 'List Pendaftaran entities'
+  parent: system.admin_structure
+  weight: 100
+
+pendaftaran.admin.structure.settings:
+  title: 'Pendaftaran settings'
+  description: 'Configure Pendaftaran entities'
+  route_name: pendaftaran.settings
+  parent: system.admin_structure

@@ -1,0 +1,27 @@
+# Pendaftaran routing definition
+pendaftaran.settings_tab:
+  route_name: pendaftaran.settings
+  title: 'Settings'
+  base_route: pendaftaran.settings
+
+entity.pendaftaran.canonical:
+  route_name: entity.pendaftaran.canonical
+  base_route: entity.pendaftaran.canonical
+  title: 'View'
+
+entity.pendaftaran.edit_form:
+  route_name: entity.pendaftaran.edit_form
+  base_route: entity.pendaftaran.canonical
+  title: 'Edit'
+
+entity.pendaftaran.version_history:
+  route_name: entity.pendaftaran.version_history
+  base_route: entity.pendaftaran.canonical
+  title: 'Revisions'
+
+entity.pendaftaran.delete_form:
+  route_name:  entity.pendaftaran.delete_form
+  base_route:  entity.pendaftaran.canonical
+  title: Delete
+  weight: 10
+

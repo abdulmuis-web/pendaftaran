@@ -1,0 +1,5 @@
+entity.pendaftaran.add_form:
+  route_name: entity.pendaftaran.add_form
+  title: 'Add Pendaftaran'
+  appears_on:
+    - entity.pendaftaran.collection

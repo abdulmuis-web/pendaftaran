@@ -1,0 +1,14 @@
+{
+  "name": "drupal/pendaftaran",
+  "type": "drupal-module",
+  "description": "Data Pendaftaran siswa",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/pendaftaran",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/pendaftaran",
+    "source": "http://cgit.drupalcode.org/pendaftaran"
+  },
+  "require": { }
+}

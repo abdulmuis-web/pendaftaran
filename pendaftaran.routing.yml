@@ -1,0 +1,132 @@
+pendaftaran.pendaftaran:
+  path: '/pendaftaran'
+  defaults:
+    _controller: '\Drupal\pendaftaran\Controller\PendaftaranController::pendaftaran'
+    _title: 'Demo'
+  requirements:
+    _permission: 'access content'
+
+pendaftaran.form:
+  path: '/pendaftaran/form'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\DemoForm'
+    _title: 'Demo Form'
+  requirements:
+    _permission: 'access content'
+
+# Step 1 Data Pribadi
+pendaftaran.multistep_data_pribadi:
+  path: '/pendaftaran/multistep-data-pribadi'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepDataPribadiForm'
+    _title: 'Data Pribadi form'
+  requirements:
+    _permission: 'access content'
+
+# Step 2 Pilih Provinsi
+pendaftaran.multistep_pilih_provinsi:
+  path: '/pendaftaran/multistep-pilih-provinsi'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepPilihProvinsiForm'
+    _title: 'Domisili - Pilih Provinsi'
+  requirements:
+    _permission: 'access content'
+
+# Step 3 Pilih Kabupaten
+pendaftaran.multistep_pilih_kabupaten:
+  path: '/pendaftaran/multistep-pilih-kabupaten'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepPilihKabupatenForm'
+    _title: 'Domisili - Pilih Kabupaten'
+  requirements:
+    _permission: 'access content'
+
+# Step 4 Pilih Kecamatan
+pendaftaran.multistep_pilih_kecamatan:
+  path: '/pendaftaran/multistep-pilih-kecamatan'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepPilihKecamatanForm'
+    _title: 'Domisili - Pilih Kecamatan'
+  requirements:
+    _permission: 'access content'
+    
+# Step 4 Pilih Desa / Kelurahan
+pendaftaran.multistep_pilih_desa:
+  path: '/pendaftaran/multistep-pilih-desa'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepPilihDesaForm'
+    _title: 'Domisili - Pilih Desa / Kelurahan'
+  requirements:
+    _permission: 'access content'
+
+# Step 5 Jenis Sekolah
+pendaftaran.multistep_jenis_sekolah:
+  path: '/pendaftaran/multistep-jenis-sekolah'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepJenisSekolahForm'
+    _title: 'Jenis sekolah'
+  requirements:
+    _permission: 'access content'
+
+# Step 6 Zona Sekolah
+pendaftaran.multistep_zona_sekolah:
+  path: '/pendaftaran/multistep-zona-sekolah'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepZonaSekolahForm'
+    _title: 'Zona sekolah'
+  requirements:
+    _permission: 'access content'
+
+# Step 7 Pilihan Sekolah
+pendaftaran.multistep_pilihan_sekolah:
+  path: '/pendaftaran/multistep-pilihan-sekolah'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepPilihanSekolahForm'
+    _title: 'Pilihan sekolah'
+  requirements:
+    _permission: 'access content'
+
+# Step 8 Prodi Sekolah
+pendaftaran.multistep_prodi_sekolah:
+  path: '/pendaftaran/multistep-prodi-sekolah'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepProdiSekolahForm'
+    _title: 'Program studi'
+  requirements:
+    _permission: 'access content'
+
+# Step 9 Jalur SKTM
+pendaftaran.multistep_jalur_sktm:
+  path: '/pendaftaran/multistep-jalur-sktm'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepJalurSktmForm'
+    _title: 'Jalur Keluarga Tidak Mampu'
+  requirements:
+    _permission: 'access content'
+
+# Step 10 Jalur Prestasi
+pendaftaran.multistep_jalur_prestasi:
+  path: '/pendaftaran/multistep-jalur-prestasi'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepJalurPrestasiForm'
+    _title: 'Jalur Prestasi'
+  requirements:
+    _permission: 'access content'
+
+# Step 11 Data Prestasi
+pendaftaran.multistep_data_prestasi:
+  path: '/pendaftaran/multistep-data-prestasi'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepDataPrestasiForm'
+    _title: 'Data Prestasi'
+  requirements:
+    _permission: 'access content'
+
+# Step 12 Review
+pendaftaran.multistep_selesai:
+  path: '/pendaftaran/multistep-selesai'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\Multistep\MultistepSelesaiForm'
+    _title: 'Periksa Data Pendaftaran'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,3 @@
+services:
+    pendaftaran.pendaftaran_service:
+        class: Drupal\pendaftaran\PendaftaranService
