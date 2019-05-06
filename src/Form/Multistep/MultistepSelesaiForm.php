@@ -211,7 +211,6 @@ class MultistepSelesaiForm extends MultistepFormBase {
 	$data = $this->getDataAkademik($user->getUsername());
 	//$data = (array) $data;
 	$skor_akademik = $this->getAllSkorAkademik();
-    dpm($values);
 	
 	$entries = array(
 	  'name' => $user->getUsername(),
@@ -273,22 +272,6 @@ class MultistepSelesaiForm extends MultistepFormBase {
       'skor_juara' => $this->store->get('skor_juara'),
       'prestasi' => $this->store->get('prestasi'),
 	);
-
-/*
-    [
-      'nisn' => '12345678901234',
-      'uid' => '1',
-      'nama' => 'Nama 1',
-      'nama_ayah' => 'Aayah 1',
-      'tempat_lahir' => 'tempat_lahir 1',
-      'tgl_lahir' => '20-01-2000',
-      'matematika' => '70.5',
-      'ipa' => '40.5',
-      'ips' => '90.5',
-      'english' => '78.5',
-      'indonesia' => '90.6',
-    ],
-*/	
 	$pendaftaran = $this->createPendaftaran($entries);
     // Save the data
     parent::saveData();

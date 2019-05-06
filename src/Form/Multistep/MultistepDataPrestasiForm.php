@@ -197,7 +197,6 @@ class MultistepDataPrestasiForm extends MultistepFormBase {
 	foreach ($elements as $key => $element) {
 		$values[$element] = $this->store->get($element);
 	}
-	dpm($values);
 
     $form_state->setRedirect('pendaftaran.multistep_selesai');
   }
