@@ -144,6 +144,17 @@ function pendaftaran_schema() {
         'default' => '',
         'description' => 'The matematika dari siswa',
       ],
+	  /*
+	   *
+	   */
+      'indonesia' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The matematika dari siswa',
+      ],
+	  
     ],
     'primary key' => ['id'],
     'unique keys' => ['nisn'=>['nisn']],

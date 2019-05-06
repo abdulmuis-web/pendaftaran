@@ -3,3 +3,4 @@ entity.pendaftaran.add_form:
   title: 'Add Pendaftaran'
   appears_on:
     - entity.pendaftaran.collection
+    - entity.pendaftaran.canonical

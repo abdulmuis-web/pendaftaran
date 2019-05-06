@@ -155,15 +155,15 @@ class MultistepDataPrestasiForm extends MultistepFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state){
 
-	$juara = Penyelenggara::load($form_state->getValue('penyelenggara'));
+	$penyelenggara = Penyelenggara::load($form_state->getValue('penyelenggara'));
 	$this->store->set('penyelenggara', $form_state->getValue('penyelenggara'));
-    $this->store->set('nama_penyelenggara', $juara->label());
-    $this->store->set('skor_penyelenggara', $juara->score->value);
+    $this->store->set('nama_penyelenggara', $penyelenggara->label());
+    $this->store->set('skor_penyelenggara', $penyelenggara->score->value);
 
-	$juara = Tingkat::load($form_state->getValue('tingkat'));
+	$tingkat = Tingkat::load($form_state->getValue('tingkat'));
 	$this->store->set('tingkat', $form_state->getValue('tingkat'));
-    $this->store->set('nama_tingkat', $juara->label());
-    $this->store->set('skor_tingkat', $juara->score->value);
+    $this->store->set('nama_tingkat', $tingkat->label());
+    $this->store->set('skor_tingkat', $tingkat->score->value);
 	
 	$juara = Juara::load($form_state->getValue('juara'));
 	$this->store->set('juara', $form_state->getValue('juara'));
@@ -171,6 +171,7 @@ class MultistepDataPrestasiForm extends MultistepFormBase {
     $this->store->set('skor_juara', $juara->score->value);
 
     $this->store->set('prestasi', $form_state->getValue('prestasi'));
+    $this->store->set('skor_prestasi', $penyelenggara->score->value + $tingkat->score->value + $juara->score->value);
 
 	$elements = array('provinsi', 'nama_provinsi',
 	                  'kabupaten', 'nama_kabupaten',
@@ -186,12 +187,12 @@ class MultistepDataPrestasiForm extends MultistepFormBase {
 					  'provinsi_sekolah',
 					  'zonasi', 'nama_zonasi', 'nilai_zonasi',
 					  'prodi_sekolah', 'nama_prodi_sekolah',
-					  'jalur_sktm', 'nama_jalur_sktm',
+					  'jalur_sktm', 'nama_jalur_sktm','skor_sktm',
 					  'jalur_prestasi', 'nama_jalur_prestasi',
 					  'penyelenggara','nama_penyelenggara','skor_penyelenggara',
 					  'tingkat','nama_tingkat','skor_tingkat',
 					  'juara','nama_juara','skor_juara',
-					  'prestasi');
+					  'prestasi', 'skor_prestasi');
 
 	foreach ($elements as $key => $element) {
 		$values[$element] = $this->store->get($element);

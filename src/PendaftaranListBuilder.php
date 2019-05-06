@@ -18,7 +18,7 @@ class PendaftaranListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Pendaftaran ID');
+    $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
@@ -31,7 +31,7 @@ class PendaftaranListBuilder extends EntityListBuilder {
     $row['id'] = $entity->id();
     $row['name'] = Link::createFromRoute(
       $entity->label(),
-      'entity.pendaftaran.edit_form',
+      'entity.pendaftaran.canonical',
       ['pendaftaran' => $entity->id()]
     );
     return $row + parent::buildRow($entity);

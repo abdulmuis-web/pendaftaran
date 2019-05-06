@@ -73,10 +73,12 @@ class MultistepJalurPrestasiForm extends MultistepFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state){
     $this->store->set('jalur_prestasi', $form_state->getValue('jalur_prestasi'));
-    $this->store->set('nama_jalur_prestasi', $this->getJalurPrestasiOptions($form_state->getValue('jalur_prestasi')));
+    
+	$this->store->set('nama_jalur_prestasi', $this->getJalurPrestasiOptions($form_state->getValue('jalur_prestasi')));
+	
 	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa',
 	                  'jenis_sekolah','nama_jenis_sekolah','zona_sekolah', 'nama_zona_sekolah', 'nama_jenis_sekolah', 'pilihan_sekolah', 'nama_pilihan_sekolah', 'desa_sekolah', 'kecamatan_sekolah',
-					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi', 'prodi_sekolah', 'nama_prodi_sekolah', 'jalur_sktm', 'nama_jalur_sktm', 'jalur_prestasi', 'nama_jalur_prestasi');
+					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi', 'prodi_sekolah', 'nama_prodi_sekolah', 'jalur_sktm', 'nama_jalur_sktm', 'skor_sktm', 'jalur_prestasi', 'nama_jalur_prestasi');
 
 	foreach ($elements as $key => $element) {
 		$values[$element] = $this->store->get($element);

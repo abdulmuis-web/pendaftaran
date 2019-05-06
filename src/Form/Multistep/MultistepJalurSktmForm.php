@@ -80,12 +80,12 @@ class MultistepJalurSktmForm extends MultistepFormBase {
 	$jalur_sktm = Sktm::load($form_state->getValue('jalur_sktm'));
 	
     //$this->store->set('nama_jalur_sktm', $this->getSktmOptions($form_state->getValue('jalur_sktm')));
-    $this->store->set('nilai_jalur_sktm', $jalur_sktm->score->value);
+    $this->store->set('skor_sktm', $jalur_sktm->score->value);
     $this->store->set('nama_jalur_sktm', $jalur_sktm->label());
 
 	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa',
 	                  'jenis_sekolah','nama_jenis_sekolah','zona_sekolah', 'nama_zona_sekolah', 'nama_jenis_sekolah', 'pilihan_sekolah', 'nama_pilihan_sekolah', 'desa_sekolah', 'kecamatan_sekolah',
-					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi', 'prodi_sekolah', 'nama_prodi_sekolah', 'jalur_sktm', 'nama_jalur_sktm', 'nilai_jalur_sktm');					  
+					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi', 'prodi_sekolah', 'nama_prodi_sekolah', 'jalur_sktm', 'nama_jalur_sktm', 'skor_sktm');					  
 
 	foreach ($elements as $key => $element) {
 		$values[$element] = $this->store->get($element);
