@@ -529,7 +529,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -41,
       ])
       ->setDisplayOptions('form', [
@@ -577,7 +577,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -39,
       ])
       ->setDisplayOptions('form', [
@@ -625,7 +625,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -37,
       ])
       ->setDisplayOptions('form', [
@@ -673,7 +673,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -35,
       ])
       ->setDisplayOptions('form', [
@@ -721,7 +721,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -33,
       ])
       ->setDisplayOptions('form', [
@@ -769,7 +769,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -31,
       ])
       ->setDisplayOptions('form', [
@@ -817,7 +817,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -29,
       ])
       ->setDisplayOptions('form', [
@@ -969,7 +969,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -23,
       ])
       ->setDisplayOptions('form', [
@@ -1032,7 +1032,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -20,
       ])
       ->setDisplayOptions('form', [
@@ -1080,7 +1080,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -18,
       ])
       ->setDisplayOptions('form', [
@@ -1144,7 +1144,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -15,
       ])
       ->setDisplayOptions('form', [
@@ -1208,7 +1208,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -12,
       ])
       ->setDisplayOptions('form', [
@@ -1272,7 +1272,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -9,
       ])
       ->setDisplayOptions('form', [
@@ -1337,7 +1337,7 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'hidden',
         'weight' => -6,
       ])
       ->setDisplayOptions('form', [
