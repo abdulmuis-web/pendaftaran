@@ -10,7 +10,6 @@ namespace Drupal\pendaftaran\Form\Multistep;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\pendaftaran\Entity\Pendaftaran;
-use Drupal\skor_akademik\Entity\SkorAkademik;
 
 class MultistepSelesaiForm extends MultistepFormBase {
 
@@ -88,64 +87,73 @@ class MultistepSelesaiForm extends MultistepFormBase {
      '#description' => $this->store->get('nilai_zonasi'),
 	 );
 
-	$form['sktm'] = array(
-     '#type' => 'fieldset',
-     '#title' => $this->t('Keluarga tidak mampu'),
-    );
-	$form['sktm']['nama_jalur_sktm'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('SKTM :'),
-     '#description' => $this->store->get('nama_jalur_sktm'),
-	 );
-	$form['sktm']['skor_sktm'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Nilai SMTM :'),
-     '#description' => $this->store->get('skor_sktm'),
-	 );
+    if($this->store->get('jalur_sktm') != '10'){
+	  $form['sktm'] = array(
+       '#type' => 'fieldset',
+       '#title' => $this->t('Keluarga tidak mampu'),
+      );
+	  $form['sktm']['nama_jalur_sktm'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('SKTM :'),
+       '#description' => $this->store->get('nama_jalur_sktm'),
+	  );
+	  $form['sktm']['skor_sktm'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Nilai SMTM :'),
+       '#description' => $this->store->get('skor_sktm'),
+	  );
+	}
+    if($this->store->get('jalur_prestasi') != '10'){
 
-	$form['jalur_prestasi'] = array(
-     '#type' => 'fieldset',
-     '#title' => $this->t('Jalur prestasi'),
-    );
-	$form['jalur_prestasi']['nama_jalur_prestasi'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Jalur Prestasi :'),
-     '#description' => $this->store->get('nama_jalur_prestasi'),
-	 );
-	$form['jalur_prestasi']['nama_penyelenggara'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Penyelenggara :'),
-     '#description' => $this->store->get('nama_penyelenggara'),
-	 );
-	$form['jalur_prestasi']['nama_tingkat'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Tingkat :'),
-     '#description' => $this->store->get('nama_tingkat'),
-	 );
-	$form['jalur_prestasi']['nama_juara'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Juara :'),
-     '#description' => $this->store->get('nama_juara'),
-	 );
-	$form['jalur_prestasi']['prestasi'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Lomba :'),
-     '#description' => $this->store->get('prestasi'),
-	 );
-	$form['jalur_prestasi']['nilai'] = array(
-     '#type' => 'item',
-     '#title' => $this->t('Nilai :'),
-     '#description' => $nilai += $this->store->get('skor_prestasi'),
-	 );
+	  $form['jalur_prestasi'] = array(
+       '#type' => 'fieldset',
+       '#title' => $this->t('Jalur prestasi'),
+      );
+	  $form['jalur_prestasi']['nama_jalur_prestasi'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Jalur Prestasi :'),
+       '#description' => $this->store->get('nama_jalur_prestasi'),
+	   );
+	  $form['jalur_prestasi']['nama_penyelenggara'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Penyelenggara :'),
+       '#description' => $this->store->get('nama_penyelenggara'),
+	  );
+	  $form['jalur_prestasi']['nama_tingkat'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Tingkat :'),
+       '#description' => $this->store->get('nama_tingkat'),
+	  );
+	  $form['jalur_prestasi']['nama_juara'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Juara :'),
+       '#description' => $this->store->get('nama_juara'),
+	  );
+	  $form['jalur_prestasi']['prestasi'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Lomba :'),
+       '#description' => $this->store->get('prestasi'),
+	  );
+	  $form['jalur_prestasi']['nilai'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Nilai :'),
+       '#description' => $nilai += $this->store->get('skor_prestasi'),
+	  );
+	}
 
+	$previous = 'pendaftaran.multistep_data_prestasi';
+	if($this->store->get('jalur_prestasi') == '10'){
+	  $previous = 'pendaftaran.multistep_jalur_prestasi';
+	}
+	
     $form['actions']['previous'] = array(
       '#type' => 'link',
-      '#title' => $this->t('Previous'),
+      '#title' => $this->t('Periksa kemnali'),
       '#attributes' => array(
         'class' => array('button'),
       ),
       '#weight' => 0,
-      '#url' => Url::fromRoute('pendaftaran.multistep_data_prestasi'),
+      '#url' => Url::fromRoute($previous),
     );
     
 	$form['#attributes']['class'] = ['pendaftaran'];
@@ -206,31 +214,15 @@ class MultistepSelesaiForm extends MultistepFormBase {
 		$values[$element] = $this->store->get($element);
 	}
 
-	$user = \Drupal::currentUser();
+	//$user = \Drupal::currentUser();
 	
-	$data = $this->getDataAkademik($user->getUsername());
+	//$data = $this->getDataAkademik($user->getUsername());
 	//$data = (array) $data;
-	$skor_akademik = $this->getAllSkorAkademik();
+	//$skor_akademik = $this->getAllSkorAkademik();
 	
 	$entries = array(
 	  'name' => $user->getUsername(),
-	  'nama_lengkap' => $this->store->get('nama_lengkap'),
-      'nisn' => $data->nisn,
-      'uid' => $user->Id(),
-      'nama' => $data->nama,
-      'nama_ayah' => $data->nama_ayah,
-      'tempat_lahir' => $data->tempat_lahir,
-      'tgl_lahir' => $data->tgl_lahir,
-      'matematika' => $data->matematika,
-      'ipa' => $data->ipa,
-      'ips' => $data->ips,
-      'english' => $data->english,
-      'indonesia' => $data->english,
-      'skor_matematika' => $skor_akademik['Matematika'],
-      'skor_ipa' => $skor_akademik['IPA'],
-      'skor_ips' => $skor_akademik['IPA'],
-      'skor_english' => $skor_akademik['IPS'],
-      'skor_indonesia' => $skor_akademik['Indonesia'],
+
       'provinsi' => $this->store->get('provinsi'),
       'nama_provinsi' => $this->store->get('nama_provinsi'),
       'kabupaten' => $this->store->get('kabupaten'),

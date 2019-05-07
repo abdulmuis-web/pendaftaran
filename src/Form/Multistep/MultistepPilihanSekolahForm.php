@@ -37,7 +37,7 @@ class MultistepPilihanSekolahForm extends MultistepFormBase {
 	  '#description' => 'Pilih pilihan sekolah yang akan anda tuju.',
 	  '#options' => $this->getPilihanSekolahOptions(),
 	);
-
+	
     $form['actions']['previous'] = array(
       '#type' => 'link',
       '#title' => $this->t('Lihat pilihan sekolah di zona lainnya'),
@@ -142,8 +142,13 @@ class MultistepPilihanSekolahForm extends MultistepFormBase {
 		$values[$element] = $this->store->get($element);
 	}
 	dpm($values);
+    
+	$redirect = 'pendaftaran.multistep_prodi_sekolah';
+	if($this->store->get('jenis_sekolah') != '10'){
+		$redirect = 'pendaftaran.multistep_jalur_sktm';
+	}
 
-    $form_state->setRedirect('pendaftaran.multistep_prodi_sekolah');
+    $form_state->setRedirect($redirect);
   }
 
 }

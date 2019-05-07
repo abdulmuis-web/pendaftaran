@@ -84,7 +84,12 @@ class MultistepJalurPrestasiForm extends MultistepFormBase {
 		$values[$element] = $this->store->get($element);
 	}
 
-    $form_state->setRedirect('pendaftaran.multistep_data_prestasi');
+	$redirect = 'pendaftaran.multistep_data_prestasi';
+	if($this->store->get('jalur_prestasi') == '10'){
+		$redirect = 'pendaftaran.multistep_selesai';
+	}
+
+    $form_state->setRedirect($redirect);
   }
 
 }
