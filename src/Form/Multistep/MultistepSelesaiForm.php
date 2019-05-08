@@ -29,7 +29,7 @@ class MultistepSelesaiForm extends MultistepFormBase {
 
 	  $form['data_pribadi'] = array(
        '#type' => 'fieldset',
-       '#title' => $this->t('Data akademik'),
+       '#title' => $this->t('Data pribadi'),
       );
 	  $form['data_pribadi']['nama_lengkap'] = array(
        '#type' => 'item',
@@ -40,6 +40,11 @@ class MultistepSelesaiForm extends MultistepFormBase {
        '#type' => 'item',
        '#title' => $this->t('Nama ayah :'),
        '#description' => $this->store->get('nama_ayah')?:$data->nama_ayah,
+	   );
+	  $form['data_pribadi']['pekerjaan_ayah'] = array(
+       '#type' => 'item',
+       '#title' => $this->t('Pekerjaan ayah :'),
+       '#description' => $this->store->get('pekerjaan_ayah')?:$data->pekerjaan_ayah,
 	   );
 	  $form['data_pribadi']['tempat_lahir'] = array(
        '#type' => 'item',
@@ -136,69 +141,76 @@ class MultistepSelesaiForm extends MultistepFormBase {
      '#title' => $this->t('Naa zonasi :'),
      '#description' => $this->store->get('nama_zonasi'),
 	 );
-	$form['zonasi']['nilai_zonasi'] = array(
+	$form['zonasi']['skor_zonasi'] = array(
      '#type' => 'item',
-     '#title' => $this->t('Nilai zonasi :'),
-     '#description' => $this->store->get('nilai_zonasi'),
+     '#title' => $this->t('Skor zonasi :'),
+     '#description' => $this->store->get('skor_zonasi'),
 	 );
 
-    if($this->store->get('jalur_sktm') != '10'){
-	  $form['sktm'] = array(
-       '#type' => 'fieldset',
-       '#title' => $this->t('Keluarga tidak mampu'),
-      );
-	  $form['sktm']['nama_jalur_sktm'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('SKTM :'),
-       '#description' => $this->store->get('nama_jalur_sktm'),
-	  );
-	  $form['sktm']['skor_sktm'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Nilai SMTM :'),
-       '#description' => $this->store->get('skor_sktm'),
-	  );
-	}
-    if($this->store->get('jalur_prestasi') != '10'){
+	if($this->store->get('provinsi') == '36'){
+      if($this->store->get('jalur_sktm') != '10'){
+	    $form['sktm'] = array(
+         '#type' => 'fieldset',
+         '#title' => $this->t('Keluarga tidak mampu'),
+        );
+	    $form['sktm']['nama_jalur_sktm'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('SKTM :'),
+         '#description' => $this->store->get('nama_jalur_sktm'),
+	    );
+	    $form['sktm']['skor_sktm'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Nilai SMTM :'),
+         '#description' => $this->store->get('skor_sktm'),
+	    );
+	  }
+      if($this->store->get('jalur_prestasi') != '10'){
 
-	  $form['jalur_prestasi'] = array(
-       '#type' => 'fieldset',
-       '#title' => $this->t('Jalur prestasi'),
-      );
-	  $form['jalur_prestasi']['nama_jalur_prestasi'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Jalur Prestasi :'),
-       '#description' => $this->store->get('nama_jalur_prestasi'),
-	   );
-	  $form['jalur_prestasi']['nama_penyelenggara'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Penyelenggara :'),
-       '#description' => $this->store->get('nama_penyelenggara'),
-	  );
-	  $form['jalur_prestasi']['nama_tingkat'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Tingkat :'),
-       '#description' => $this->store->get('nama_tingkat'),
-	  );
-	  $form['jalur_prestasi']['nama_juara'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Juara :'),
-       '#description' => $this->store->get('nama_juara'),
-	  );
-	  $form['jalur_prestasi']['prestasi'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Lomba :'),
-       '#description' => $this->store->get('prestasi'),
-	  );
-	  $form['jalur_prestasi']['nilai'] = array(
-       '#type' => 'item',
-       '#title' => $this->t('Nilai :'),
-       '#description' => $nilai += $this->store->get('skor_prestasi'),
-	  );
+	    $form['jalur_prestasi'] = array(
+         '#type' => 'fieldset',
+         '#title' => $this->t('Jalur prestasi'),
+        );
+	    $form['jalur_prestasi']['nama_jalur_prestasi'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Jalur Prestasi :'),
+         '#description' => $this->store->get('nama_jalur_prestasi'),
+	    );
+	    $form['jalur_prestasi']['nama_penyelenggara'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Penyelenggara :'),
+         '#description' => $this->store->get('nama_penyelenggara'),
+	    );
+	    $form['jalur_prestasi']['nama_tingkat'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Tingkat :'),
+         '#description' => $this->store->get('nama_tingkat'),
+	    );
+	    $form['jalur_prestasi']['nama_juara'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Juara :'),
+         '#description' => $this->store->get('nama_juara'),
+	    );
+	    $form['jalur_prestasi']['prestasi'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Lomba :'),
+         '#description' => $this->store->get('prestasi'),
+	    );
+	    $form['jalur_prestasi']['nilai'] = array(
+         '#type' => 'item',
+         '#title' => $this->t('Nilai :'),
+         '#description' => $nilai += $this->store->get('skor_prestasi'),
+	    );
+	  }
 	}
+	
 
 	$previous = 'pendaftaran.multistep_data_prestasi';
 	if($this->store->get('jalur_prestasi') == '10'){
 	  $previous = 'pendaftaran.multistep_jalur_prestasi';
+	}
+	
+	if($this->store->get('provinsi') != '36'){
+		$previous = 'pendaftaran.multistep_prodi_sekolah';
 	}
 	
     $form['actions']['previous'] = array(
@@ -244,39 +256,13 @@ class MultistepSelesaiForm extends MultistepFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-	/*
-	$elements = array('provinsi', 'nama_provinsi',
-	                  'kabupaten', 'nama_kabupaten',
-					  'kecamatan', 'nama_kecamatan',
-					  'desa', 'nama_desa',
-	                  'jenis_sekolah','nama_jenis_sekolah',
-					  'zona_sekolah', 'nama_zona_sekolah',
-					  'nama_jenis_sekolah',
-					  'pilihan_sekolah', 'nama_pilihan_sekolah',
-					  'desa_sekolah',
-					  'kecamatan_sekolah',
-					  'kabupaten_sekolah',
-					  'provinsi_sekolah',
-					  'zonasi', 'nama_zonasi', 'nilai_zonasi',
-					  'prodi_sekolah', 'nama_prodi_sekolah',
-					  'jalur_sktm', 'nama_jalur_sktm', 'skor_sktm',
-					  'jalur_prestasi', 'nama_jalur_prestasi',
-					  'penyelenggara','nama_penyelenggara','skor_penyelenggara',
-					  'tingkat','nama_tingkat','skor_tingkat',
-					  'juara','nama_juara','skor_juara',
-					  'prestasi');
-
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
-	}
-	*/
 	$user = \Drupal::currentUser();
 	$entries =[];
 	$entries = array(
 	  'name' => $user->getUsername(),
       'nama_lengkap'=> $this->store->get('nama_lengkap'),
 	  'nama_ayah'=> $this->store->get('nama_ayah'),
-	  //'pekerjaan_ayah'=> $this->store->get('pekerjaan_ayah'),
+	  'pekerjaan_ayah'=> $this->store->get('pekerjaan_ayah'),
 	  'tempat_lahir' => $this->store->get('tempat_lahir'),
 	  'tgl_lahir' => $this->store->get('tgl_lahir'),
 	  'matematika' => $this->store->get('matematika'),
@@ -305,19 +291,40 @@ class MultistepSelesaiForm extends MultistepFormBase {
       'provinsi_sekolah' => $this->store->get('provinsi_sekolah'),
       'zonasi' => $this->store->get('zonasi'),
       'nama_zonasi' => $this->store->get('nama_zonasi'),
-      'nilai_zonasi' => $this->store->get('nilai_zonasi'),
+      'skor_zonasi' => $this->store->get('skor_zonasi'),
       'prodi_sekolah' => $this->store->get('prodi_sekolah'),
       'nama_prodi_sekolah' => $this->store->get('nama_prodi_sekolah'),
 	);
-    if($this->store->get('jalur_sktm') != '10'){
+	$jalur_sktm = array(
+      'jalur_sktm' => FALSE,
+      'nama_jalur_sktm' => FALSE,
+	  'skor_sktm' => FALSE,
+	);  
+    if($this->store->get('jalur_sktm') != '10' && $this->store->get('provinsi') == '36'){
 	  $jalur_sktm = array(
         'jalur_sktm' => $this->store->get('jalur_sktm'),
         'nama_jalur_sktm' => $this->store->get('nama_jalur_sktm'),
 	    'skor_sktm' => $this->store->get('skor_sktm'),
 	  );
-	  $entries = array_merge($entries, $jalur_sktm);
 	}
-    if($this->store->get('jalur_prestasi') != '10'){
+    $entries = array_merge($entries, $jalur_sktm);
+
+    $jalur_prestasi = array(
+      'jalur_prestasi' => FALSE,
+      'nama_jalur_prestasi' => FALSE,
+      'skor_prestasi' => FALSE,
+      'penyelenggara' => FALSE,
+      'nama_penyelenggara' => FALSE,
+      'skor_penyelenggara' => FALSE,
+      'tingkat' => FALSE,
+      'nama_tingkat' => FALSE,
+      'skor_tingkat' => FALSE,
+      'juara' => FALSE,
+      'nama_juara' => FALSE,
+      'skor_juara' => FALSE,
+      'prestasi' => FALSE,
+    );
+    if($this->store->get('jalur_prestasi') != '10' && $this->store->get('provinsi') == '36'){
 	  $jalur_prestasi = array(
         'jalur_prestasi' => $this->store->get('jalur_prestasi'),
         'nama_jalur_prestasi' => $this->store->get('nama_jalur_prestasi'),
@@ -333,8 +340,19 @@ class MultistepSelesaiForm extends MultistepFormBase {
         'skor_juara' => $this->store->get('skor_juara'),
         'prestasi' => $this->store->get('prestasi'),
       );
-	  $entries = array_merge($entries, $jalur_prestasi);
 	}
+    $entries = array_merge($entries, $jalur_prestasi);
+	
+    $entries['skor_total'] = $entries['skor_akademik'] + $entries['skor_zonasi'] + $entries['skor_sktm'] + $entries['skor_prestasi'];
+	$elements = ['skor_matematika','skor_ipa', 'skor_ips', 'skor_english', 'skor_indonesia', 'skor_akademik',
+				 'skor_zonasi', 'skor_sktm', 'skor_prestasi', 'skor_total'];
+    $this->store->set('skor_total', $entries['skor_total']);
+	
+	foreach ($elements as $key => $element) {
+	  $values[$element] = $this->store->get($element);
+	}
+    dpm($values);	
+	
 	$id = $this->getPendaftaran($entries['name']);
 	if($id){
 		$pendaftaran = $this->updatePendaftaran($entries, $id);

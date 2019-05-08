@@ -173,31 +173,6 @@ class MultistepDataPrestasiForm extends MultistepFormBase {
     $this->store->set('prestasi', $form_state->getValue('prestasi'));
     $this->store->set('skor_prestasi', $penyelenggara->score->value + $tingkat->score->value + $juara->score->value);
 
-	$elements = array('provinsi', 'nama_provinsi',
-	                  'kabupaten', 'nama_kabupaten',
-					  'kecamatan', 'nama_kecamatan',
-					  'desa', 'nama_desa',
-	                  'jenis_sekolah','nama_jenis_sekolah',
-					  'zona_sekolah', 'nama_zona_sekolah',
-					  'nama_jenis_sekolah',
-					  'pilihan_sekolah', 'nama_pilihan_sekolah',
-					  'desa_sekolah',
-					  'kecamatan_sekolah',
-					  'kabupaten_sekolah',
-					  'provinsi_sekolah',
-					  'zonasi', 'nama_zonasi', 'nilai_zonasi',
-					  'prodi_sekolah', 'nama_prodi_sekolah',
-					  'jalur_sktm', 'nama_jalur_sktm','skor_sktm',
-					  'jalur_prestasi', 'nama_jalur_prestasi',
-					  'penyelenggara','nama_penyelenggara','skor_penyelenggara',
-					  'tingkat','nama_tingkat','skor_tingkat',
-					  'juara','nama_juara','skor_juara',
-					  'prestasi', 'skor_prestasi');
-
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
-	}
-
     $form_state->setRedirect('pendaftaran.multistep_selesai');
   }
 

@@ -77,12 +77,6 @@ class MultistepPilihKabupatenForm extends MultistepFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state){
     $this->store->set('kabupaten', $form_state->getValue('kabupaten'));
     $this->store->set('nama_kabupaten', $this->getResidenceOptions($form_state->getValue('kabupaten')));
-
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);		
-	}
-	dpm($values);
 	
     $form_state->setRedirect('pendaftaran.multistep_pilih_kecamatan');
   }

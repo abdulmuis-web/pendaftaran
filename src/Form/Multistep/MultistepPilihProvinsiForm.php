@@ -76,12 +76,14 @@ class MultistepPilihProvinsiForm extends MultistepFormBase {
     $this->store->set('provinsi', $form_state->getValue('provinsi'));
     $this->store->set('nama_provinsi', $this->getProvinceOptions($form_state->getValue('provinsi')));
 
-	$elements = array('nama_lengkap','nama_ayah','pekerjaan_ayah', 'provinsi','nama_provinsi');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);		
+    $this->store->set('desa', FALSE);
+    $this->store->set('kecamatan', FALSE);
+    $this->store->set('kabupaten', FALSE);
+	if($this->store->get('provinsi') != '36'){
+      $this->store->set('sktm', '10');
+      $this->store->set('jalur_prestasi', '10');
 	}
-	dpm($values);
-    $form_state->setRedirect('pendaftaran.multistep_pilih_kabupaten');
+    $form_state->setRedirect('pendaftaran.multistep_data_pribadi');
   }
 
 }

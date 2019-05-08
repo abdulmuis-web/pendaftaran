@@ -35,15 +35,18 @@ class MultistepJenisSekolahForm extends MultistepFormBase {
 	  '#description' => 'Pilih jenis sekolah yang akan anda tuju.',
 	  '#options' => $this->getJenisSekolahOptions(),
 	);
-
+    $prev = 'pendaftaran.multistep_pilih_desa';
+	if($this->store->get('provinsi') != '36'){
+      $prev = 'pendaftaran.multistep_data_pribadi';
+	}
     $form['actions']['previous'] = array(
       '#type' => 'link',
-      '#title' => $this->t('Kembali ke pilihan desa'),
+      '#title' => $this->t('Kembali'),
       '#attributes' => array(
         'class' => array('button'),
       ),
       '#weight' => 0,
-      '#url' => Url::fromRoute('pendaftaran.multistep_pilih_desa'),
+      '#url' => Url::fromRoute($prev),
     );
 
     $form['actions']['submit']['#value'] = $this->t('Lanjut');
@@ -75,12 +78,6 @@ class MultistepJenisSekolahForm extends MultistepFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state){
     $this->store->set('jenis_sekolah', $form_state->getValue('jenis_sekolah'));
     $this->store->set('nama_jenis_sekolah', $this->getJenisSekolahOptions($form_state->getValue('jenis_sekolah')));
-
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'jenis_sekolah', 'nama_jenis_sekolah');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);		
-	}
-	dpm($values);
 	
     $form_state->setRedirect('pendaftaran.multistep_zona_sekolah');
   }

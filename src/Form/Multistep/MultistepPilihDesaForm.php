@@ -84,12 +84,6 @@ class MultistepPilihDesaForm extends MultistepFormBase {
     $this->store->set('nama_desa', $this->getVilageOptions($form_state->getValue('desa')));
     $this->store->set('alamat', $form_state->getValue('alamat'));
 
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa', 'alamat');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);		
-	}
-	dpm($values);
-	
     $form_state->setRedirect('pendaftaran.multistep_jenis_sekolah');
   }
 

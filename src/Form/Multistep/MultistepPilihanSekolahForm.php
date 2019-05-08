@@ -133,16 +133,8 @@ class MultistepPilihanSekolahForm extends MultistepFormBase {
 	$zonasi = $this->getZonasi($machine_name);
     $this->store->set('zonasi',$zonasi->id());
     $this->store->set('nama_zonasi',$zonasi->label());
-    $this->store->set('nilai_zonasi',$zonasi->score->value);
+    $this->store->set('skor_zonasi',$zonasi->score->value);
 
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa',
-	                  'jenis_sekolah','nama_jenis_sekolah','zona_sekolah', 'nama_zona_sekolah', 'nama_jenis_sekolah', 'pilihan_sekolah', 'nama_pilihan_sekolah', 'desa_sekolah', 'kecamatan_sekolah',
-					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
-	}
-	dpm($values);
-    
 	$redirect = 'pendaftaran.multistep_prodi_sekolah';
 	if($this->store->get('jenis_sekolah') != '10'){
 		$redirect = 'pendaftaran.multistep_jalur_sktm';

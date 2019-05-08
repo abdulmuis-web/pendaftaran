@@ -77,17 +77,12 @@ class MultistepProdiSekolahForm extends MultistepFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state){
     $this->store->set('prodi_sekolah', $form_state->getValue('prodi_sekolah'));
     $this->store->set('nama_prodi_sekolah', $this->getProdiSekolahOptions($form_state->getValue('prodi_sekolah')));
-
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa',
-	                  'jenis_sekolah','nama_jenis_sekolah','zona_sekolah', 'nama_zona_sekolah', 'nama_jenis_sekolah', 'pilihan_sekolah', 'nama_pilihan_sekolah', 'desa_sekolah', 'kecamatan_sekolah',
-					  'kabupaten_sekolah','provinsi_sekolah', 'zonasi', 'nama_zonasi', 'nilai_zonasi', 'prodi_sekolah', 'nama_prodi_sekolah');					  
-
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
+    
+	$redirect = 'pendaftaran.multistep_jalur_sktm';	
+	if($this->store->get('provinsi') != '36'){
+		$redirect = 'pendaftaran.multistep_selesai';
 	}
-	dpm($values);
-
-    $form_state->setRedirect('pendaftaran.multistep_jalur_sktm');
+    $form_state->setRedirect($redirect);
   }
 
 }

@@ -331,6 +331,28 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['pekerjaan_ayah'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Pekerjaan Ayah'))
+      ->setDescription(t('The pekerjaan_ayah of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 191,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -48,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -48,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
     $fields['matematika'] = BaseFieldDefinition::create('decimal')
       ->setLabel(t('Matematika'))
       ->setDescription(t('The matematika of the Pendaftaran entity'))
@@ -479,6 +501,22 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
     $fields['skor_indonesia'] = BaseFieldDefinition::create('decimal')
       ->setLabel(t('Skor B. Indonesia'))
       ->setDescription(t('The indonesia of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => -43,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'hidden',
+          'weight' => -43,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+	  
+    $fields['skor_akademik'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor Akademik'))
+      ->setDescription(t('The skor_akademik of the Pendaftaran entity'))
       ->setDisplayOptions('view', array(
           'label' => 'above',
           'type' => 'decimal',
@@ -980,9 +1018,9 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
-    $fields['nilai_zonasi'] = BaseFieldDefinition::create('decimal')
-      ->setLabel(t('Nilai zonasi'))
-      ->setDescription(t('The nilai_zonasi of the Pendaftaran entity'))
+    $fields['skor_zonasi'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor zonasi'))
+      ->setDescription(t('The skor_zonasi of the Pendaftaran entity'))
       ->setDisplayOptions('view', array(
           'label' => 'above',
           'type' => 'decimal',
@@ -1382,6 +1420,22 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
         'type' => 'hidden',
         'weight' => -4,
       ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+  
+    $fields['skor_total'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor Total'))
+      ->setDescription(t('The skor_total of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => -43,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'hidden',
+          'weight' => -43,
+      ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);

@@ -20,8 +20,9 @@ function pendaftaran_install() {
     [
       'nisn' => '12345678901234',
       'uid' => '1',
-      'nama' => 'Nama 1',
+      'nama_lengkap' => 'Nama 1',
       'nama_ayah' => 'Aayah 1',
+      'pekerjaan_ayah' => 'Aayah 1',
       'tempat_lahir' => 'tempat_lahir 1',
       'tgl_lahir' => '20-01-2000',
       'matematika' => '70.5',
@@ -33,8 +34,9 @@ function pendaftaran_install() {
     [
       'nisn' => '12345678901235',
       'uid' => '1',
-      'nama' => 'Nama 2',
+      'nama_lengkap' => 'Nama 2',
       'nama_ayah' => 'Aayah 2',
+      'pekerjaan_ayah' => 'Aayah 1',
       'tempat_lahir' => 'tempat_lahir 2',
       'tgl_lahir' => '21-04-2001',
       'matematika' => '60.5',
@@ -81,7 +83,7 @@ function pendaftaran_schema() {
         'default' => 0,
         'description' => "Creator user's {users}.uid",
       ],
-      'nama' => [
+      'nama_lengkap' => [
         'type' => 'varchar',
         'length' => 191,
         'not null' => TRUE,
@@ -94,6 +96,13 @@ function pendaftaran_schema() {
         'not null' => TRUE,
         'default' => '',
         'description' => 'Nama ayah dari siswa.',
+      ],
+      'pekerjaan_ayah' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Pekerjaan ayah dari siswa.',
       ],
       'tempat_lahir' => [
         'type' => 'varchar',
@@ -159,7 +168,7 @@ function pendaftaran_schema() {
     'primary key' => ['id'],
     'unique keys' => ['nisn'=>['nisn']],
     'indexes' => [
-      'nama' => ['nama'],
+      'nama_lengkap' => ['nama_lengkap'],
       'tgl_lahir' => ['tgl_lahir'],
     ],
   ];

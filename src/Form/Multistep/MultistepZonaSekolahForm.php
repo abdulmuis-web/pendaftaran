@@ -76,13 +76,6 @@ class MultistepZonaSekolahForm extends MultistepFormBase {
     $this->store->set('zona_sekolah', $form_state->getValue('zona_sekolah'));
     $this->store->set('nama_zona_sekolah', $this->getZonaSekolahOptions($form_state->getValue('zona_sekolah')));
 
-	$elements = array('provinsi', 'nama_provinsi', 'kabupaten', 'nama_kabupaten', 'kecamatan', 'nama_kecamatan', 'desa', 'nama_desa',
-	                  'jenis_sekolah', 'nama_jenis_sekolah', 'zona_sekolah', 'nama_zona_sekolah');
-	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
-	}
-	dpm($values);
-
     $form_state->setRedirect('pendaftaran.multistep_pilihan_sekolah');
   }
 
