@@ -55,11 +55,11 @@ class MultistepDataPribadiForm extends MultistepFormBase {
        '#type' => 'fieldset',
        '#title' => $this->t('Data akademik'),
       );
-	  $form['data_pribadi']['nama'] = array(
+	  $form['data_pribadi']['nama_lengkap'] = array(
        '#type' => 'textfield',
        '#required' => TRUE,
        '#title' => $this->t('Nama lengkap :'),
-       '#default_value' => $this->store->get('nama')?:$data->nama,
+       '#default_value' => $this->store->get('nama_lengkap')?:$data->nama,
 	   );
 	  $form['data_pribadi']['nama_ayah'] = array(
        '#type' => 'textfield',
@@ -145,10 +145,10 @@ class MultistepDataPribadiForm extends MultistepFormBase {
        '#type' => 'fieldset',
        '#title' => $this->t('Data akademik'),
       );
-	  $form['data_pribadi']['nama'] = array(
+	  $form['data_pribadi']['nama_lengkap'] = array(
        '#type' => 'item',
        '#title' => $this->t('Nama lengkap :'),
-       '#description' => $this->store->get('nama_ayah')?:$data->nama,
+       '#description' => $this->store->get('nama_lengkap')?:$data->nama,
 	   );
 	  $form['data_pribadi']['nama_ayah'] = array(
        '#type' => 'item',
@@ -212,7 +212,7 @@ class MultistepDataPribadiForm extends MultistepFormBase {
 	
     $user = \Drupal::currentUser();
 	  
-    $this->store->set('nama', $form_state->getValue('nama'));
+    $this->store->set('nama_lengkap', $form_state->getValue('nama_lengkap'));
     $this->store->set('nama_ayah', $form_state->getValue('nama_ayah'));
     $this->store->set('pekerjaan_ayah', $form_state->getValue('pekerjaan_ayah'));
     $this->store->set('tempat_lahir', $form_state->getValue('tempat_lahir'));
@@ -224,11 +224,10 @@ class MultistepDataPribadiForm extends MultistepFormBase {
     $this->store->set('indonesia', $form_state->getValue('indonesia'));
 	
 /*	
-
 	$data = array(
       'nisn' => $data->nisn,
       'uid' => $user->Id(),
-      'nama' => $data->nama,
+      'nama_lengkap' => $data->nama,
       'nama_ayah' => $data->nama_ayah,
       'pekerjaan_ayah' => $data->pekerjaan_ayah,
       'tempat_lahir' => $data->tempat_lahir,
@@ -246,14 +245,17 @@ class MultistepDataPribadiForm extends MultistepFormBase {
 	);
 */
 	
-    $elements = array('nama','nama_ayah', 'pekerjaan_ayah','tempat_lahir'. 'tgl_lahir', 'matematika','ipa','ips','english','indonesia');
+    $elements = array('nama_lengkap','nama_ayah', 'pekerjaan_ayah','tempat_lahir', 'tgl_lahir', 'matematika','ipa','ips','english','indonesia');
 	foreach ($elements as $key => $element) {
-		$values[$element] = $this->store->get($element);
+	  $values[$element] = $this->store->get($element);
 	}
-	
+	$redirect = 'pendaftaran.multistep_jenis_sekolah';
+	if($this->store->get('provinsi') == '36'){
+	  $redirect = 'pendaftaran.multistep_pilih_kabupaten';
+	}
 	dpm($values);
-    //$form_state->setRedirect('pendaftaran.multistep_pilih_provinsi');
-    $form_state->setRedirect('pendaftaran.multistep_data_pribadi');
+    $form_state->setRedirect($redirect);
+   
   }
 
 }

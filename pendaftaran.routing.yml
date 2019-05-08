@@ -130,3 +130,11 @@ pendaftaran.multistep_selesai:
     _title: 'Periksa Data Pendaftaran'
   requirements:
     _permission: 'access content'
+pendaftaran.generate_data_akademik_form:
+  path: '/pendaftaran/form/generate_data_akademik'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\GenerateDataAkademikForm'
+    _title: 'GenerateDataAkademikForm'
+  requirements:
+    _access: 'TRUE'
+  
