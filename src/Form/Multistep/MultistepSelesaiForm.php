@@ -343,16 +343,6 @@ class MultistepSelesaiForm extends MultistepFormBase {
 	}
     $entries = array_merge($entries, $jalur_prestasi);
 	
-    $entries['skor_total'] = $entries['skor_akademik'] + $entries['skor_zonasi'] + $entries['skor_sktm'] + $entries['skor_prestasi'];
-	$elements = ['skor_matematika','skor_ipa', 'skor_ips', 'skor_english', 'skor_indonesia', 'skor_akademik',
-				 'skor_zonasi', 'skor_sktm', 'skor_prestasi', 'skor_total'];
-    $this->store->set('skor_total', $entries['skor_total']);
-	
-	foreach ($elements as $key => $element) {
-	  $values[$element] = $this->store->get($element);
-	}
-    dpm($values);	
-	
 	$id = $this->getPendaftaran($entries['name']);
 	if($id){
 		$pendaftaran = $this->updatePendaftaran($entries, $id);

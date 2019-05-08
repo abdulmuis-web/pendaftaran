@@ -20,6 +20,7 @@ use Drupal\user\UserInterface;
  *   label = @Translation("Pendaftaran"),
  *   handlers = {
  *     "storage" = "Drupal\pendaftaran\PendaftaranStorage",
+ *     "storage_schema" = "Drupal\pendaftaran\PendaftaranStorageSchema",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\pendaftaran\PendaftaranListBuilder",
  *     "views_data" = "Drupal\pendaftaran\Entity\PendaftaranViewsData",
