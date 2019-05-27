@@ -6,6 +6,11 @@ administer pendaftaran entities:
   description: 'Allow to access the administration form to configure Pendaftaran entities.'
   restrict access: true
 
+verify pendaftaran entities:
+  title: 'Verify Pendaftaran entities'
+  description: 'Allow to access the administration form to verify Pendaftaran entities.'
+  restrict access: true
+  
 delete pendaftaran entities:
   title: 'Delete Pendaftaran entities'
 

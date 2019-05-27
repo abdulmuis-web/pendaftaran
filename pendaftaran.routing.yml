@@ -137,4 +137,40 @@ pendaftaran.generate_data_akademik_form:
     _title: 'GenerateDataAkademikForm'
   requirements:
     _access: 'TRUE'
-  
+
+pendaftaran.canonical.verifikasi_admin_form:
+  path: '/pendaftaran/{pendaftaran}/verifikasi_admin'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\VerifikasiAdminForm'
+    _title: 'Verifikasi Admin Sekolah'
+  requirements:
+    _permission: 'verify pendaftaran entities'
+
+pendaftaran.verifikasi_admin_form:
+  path: '/pendaftaran/{pendaftaran}/{prodi_sekolah}/verifikasi_admin'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\VerifikasiAdminForm'
+    _title: 'Verifikasi Admin Sekolah'
+  requirements:
+    _permission: 'verify pendaftaran entities'
+
+admin_config_system.ppdb:
+  path: '/admin/config/system/ppdb'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\JalurPendaftaranForm'
+    _title: 'PPDB'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+admin_config_system.ppdb.jalur_pendaftaran:
+  path: '/admin/config/system/ppdb/jalur-pendaftaran'
+  defaults:
+    _form: '\Drupal\pendaftaran\Form\JalurPendaftaranForm'
+    _title: 'Jalur Pendaftaran Form'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+

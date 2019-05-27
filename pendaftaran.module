@@ -6,6 +6,10 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Implements hook_help().
@@ -30,14 +34,79 @@ function pendaftaran_user_insert(Drupal\Core\Entity\EntityInterface $entity) {
   
   if($entity->hasRole('siswa')){
     $nama = $entity->getUsername();    
-	$query = \Drupal::database()->select( 'data_akademik','d')
+	$query = \Drupal::database()->select('data_akademik','d')
 	  ->fields('d')
-	  ->fields('u', array('name', 'mail'))
+	  ->fields('u', array('name','mail'))
 	  ->range('0', '1')
-	  ->condition('d.nisn', $nama, '=');
-    $query->leftjoin('users_field_data', 'u', 'd.nisn = u.name');
+	  ->condition('d.nisn',$nama,'=');
+    $query->leftjoin('users_field_data','u','d.nisn = u.name');
 	$ids = $query->execute()->fetchAll();
 	$data = reset($ids);
   }
+
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pendaftaran_page_attachments(&$page) {
+  $pendaftaran = \Drupal::routeMatch()->getParameter('pendaftaran');
+  if($pendaftaran){
+    $page['#attached']['library'][] = 'pendaftaran/pendaftaran';
+  }
+}
+
+function pendaftaran_preprocess_field(&$vars, $hook) {
+  
+  $element = $vars['element'];
+  if($element['#field_name'] !== 'name') {
+    //$vars['items'][0]['content']['#options']['attributes']['class'][] = 'inline--field-item';
+    $vars['attributes']['class'][] = 'inline--display-field';
+    $vars['title_attributes']['class'][] = 'inline--field-label';
+    $vars['content_attributes']['class'][] = 'inline--display-content';
+	
+    $delta = 0;
+    while(!empty($element[$delta])) {
+	  $vars['items'][$delta]['attributes']->setAttribute('class', 'inline--field-item');
+	  $delta++;
+    }
+  }
+}
+
+
+/**
+ * Implements hook_entity_field_access().
+ */
+ 
+// \Drupal\Core\Entity\Field\FieldDefinitionInterface
+// \Drupal\Core\Entity\Field\FieldItemListInterface
+// \Drupal\Core\Field\EntityReferenceFieldItemList
+function _pendaftaran_entity_field_access($operation, \Drupal\Core\Field\BaseFieldDefinition $field_definition, 
+                                                     \Drupal\Core\Session\AccountInterface $account, 
+													 Drupal\Core\Field\FieldItemList $items = NULL) {  
+  if ($field_definition->getName() == 'skor_total_jalur_umum'
+      || $field_definition->getName() == 'skor_total_jalur_prestasi'
+      || $field_definition->getName() == 'skor_total_jalur_sktm'
+	 ){
+    $jalur_pendaftaran = \Drupal::service('config.factory')
+		->getEditable('pendaftaran.jalurpendaftaran')
+		->get('jalur_pendaftaran');
+    if ($items && $jalur_pendaftaran == '0'){ // model terpisah
+	  //return AccessResult::forbiddenIf($jalur_pendaftaran == '1')->addCacheableDependency($items->getEntity());
+	  return AccessResult::forbidden()->addCacheableDependency($items->getEntity());
+    }
+    return AccessResult::neutral();
+  }
+  elseif($field_definition->getName() == 'skor_total'){
+    $jalur_pendaftaran = \Drupal::service('config.factory')
+		->getEditable('pendaftaran.jalurpendaftaran')
+		->get('jalur_pendaftaran');
+    if ($items && $jalur_pendaftaran == '1'){ // model terpadu
+	  //return AccessResult::forbiddenIf($jalur_pendaftaran == '1')->addCacheableDependency($items->getEntity());
+	  return AccessResult::forbidden()->addCacheableDependency($items->getEntity());
+    }
+    return AccessResult::neutral();
+  }
+  return AccessResult::neutral();
 
 }

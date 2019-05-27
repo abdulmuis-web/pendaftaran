@@ -222,6 +222,22 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['year'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Tahun'))
+      ->setDescription(t('The year of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => -47,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'number',
+          'weight' => -47,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('NISN'))
       ->setDescription(t('The name of the Pendaftaran entity.'))
@@ -433,7 +449,6 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
-
 
     $fields['skor_matematika'] = BaseFieldDefinition::create('decimal')
       ->setLabel(t('Skor Matematika'))
@@ -1082,6 +1097,100 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['kompetensi_keahlian_id'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Jurusan'))
+      ->setDescription(t('The kompetensi_keahlian_id ID of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'kompetensi_keahlian')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'entity_reference_label',
+        'weight' => -21,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => -21,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['nama_jurusan'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Nama Jurusan'))
+      ->setDescription(t('The nama_jurusan of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 191,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'hidden',
+        'weight' => -20,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => -20,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['jalur_pendaftaran'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Palur Pendaftaran'))
+      ->setDescription(t('The jalur_pendaftaran ID of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'jalur_pendaftaran')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'entity_reference_label',
+        'weight' => -19,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => -19,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['nama_jalur_pendaftaran'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Nama Jalur Pendaftaran'))
+      ->setDescription(t('The nama_jalur_pendaftaran of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 191,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'hidden',
+        'weight' => -18,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => -18,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['jalur_sktm'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Jalur SKTM'))
       ->setDescription(t('The jalur_sktm ID of the Pendaftaran entity.'))
@@ -1431,12 +1540,130 @@ class Pendaftaran extends RevisionableContentEntityBase implements PendaftaranIn
       ->setDisplayOptions('view', array(
           'label' => 'above',
           'type' => 'decimal',
-          'weight' => -43,
+          'weight' => 10,
       ))
       ->setDisplayOptions('form', array(
           'type' => 'hidden',
-          'weight' => -43,
+          'weight' => 10,
       ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['skor_total_jalur_umum'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor Total'))
+      ->setDescription(t('The skor_total_jalur_umum of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => 10,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'hidden',
+          'weight' => 10,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['skor_total_jalur_prestasi'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor Total'))
+      ->setDescription(t('The skor_total_jalur_prestasi of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => 10,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'hidden',
+          'weight' => 10,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['skor_total_jalur_sktm'] = BaseFieldDefinition::create('decimal')
+      ->setLabel(t('Skor Total'))
+      ->setDescription(t('The skor_total_jalur_sktm of the Pendaftaran entity'))
+      ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'type' => 'decimal',
+          'weight' => 10,
+      ))
+      ->setDisplayOptions('form', array(
+          'type' => 'hidden',
+          'weight' => 10,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['admin_sekolah'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Admin Sekolah'))
+      ->setDescription(t('The user ID of author of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'user')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'hidden',
+        'weight' => 100,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => 100,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['tgl_verifikasi'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Tanggal Verifikasi'))
+      ->setDescription(t('The juara ID of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'datetime_type' => 'datetime',
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'datetime_default',
+        'settings' => [
+          'format_type' => 'medium',
+        ],
+        'weight' => 12,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => 12,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['keterangan'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Keterangan'))
+      ->setDescription(t('The Keterangan of the Pendaftaran entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 191,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => 13,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'hidden',
+        'weight' => 13,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);

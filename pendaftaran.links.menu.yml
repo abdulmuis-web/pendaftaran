@@ -12,3 +12,18 @@ pendaftaran.admin.structure.settings:
   description: 'Configure Pendaftaran entities'
   route_name: pendaftaran.settings
   parent: system.admin_structure
+
+admin_config_system.ppdb:
+  title: 'PPDB'
+  route_name: admin_config_system.ppdb
+  description: 'Jalur pendaftaran pada aplikasi'
+  parent: system.admin_config_system
+  weight: 99
+
+admin_config_system.ppdb.jalur_pendaftaran:
+  title: 'Jalur Pendaftaran'
+  route_name: admin_config_system.ppdb.jalur_pendaftaran
+  description: 'Jalur pendaftaran pada aplikasi'
+  parent: admin_config_system.ppdb
+  weight: 99
+

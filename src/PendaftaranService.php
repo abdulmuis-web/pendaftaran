@@ -12,7 +12,9 @@ class PendaftaranService {
   protected $pendaftaran_value;
   
   public function __construct() {
-    $this->pendaftaran_value = 'Upchuk';
+	$user = \Drupal::currentUser();
+	
+    $this->pendaftaran_value = $user->getUsername();
   }
   
   public function getPendaftaranValue() {

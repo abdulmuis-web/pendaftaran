@@ -4,3 +4,8 @@ entity.pendaftaran.add_form:
   appears_on:
     - entity.pendaftaran.collection
     - entity.pendaftaran.canonical
+pendaftaran.verifikasi_admin_form:
+  route_name: pendaftaran.canonical.verifikasi_admin_form
+  title: 'Verifikasi Pendaftaran'
+  appears_on:
+    - entity.pendaftaran.canonical

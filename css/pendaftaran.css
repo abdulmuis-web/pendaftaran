@@ -1,0 +1,11 @@
+.inline--display-field{
+  display: table-row;
+}
+.inline--display-field .inline--field-label{
+  display: table-cell;
+  padding-right: 5px;
+}
+
+.inline--display-field .inline--field-item {
+  display: table-cell;
+}

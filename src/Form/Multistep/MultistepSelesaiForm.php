@@ -342,7 +342,9 @@ class MultistepSelesaiForm extends MultistepFormBase {
       );
 	}
     $entries = array_merge($entries, $jalur_prestasi);
-	
+
+    $entries['skor_total'] = $entries['skor_akademik'] + $entries['skor_zonasi'] + $entries['skor_sktm'] + $entries['skor_prestasi'];
+
 	$id = $this->getPendaftaran($entries['name']);
 	if($id){
 		$pendaftaran = $this->updatePendaftaran($entries, $id);
@@ -395,17 +397,14 @@ class MultistepSelesaiForm extends MultistepFormBase {
    */
   public function updatePendaftaran($entries, $id){
 	    $pendaftaran = Pendaftaran::load(reset($id));
-        
-		foreach($entries as $key=>$value){
-			$pendaftaran->set($key, $value);
-		}
 		
 		$database = \Drupal::database();
         $transaction = $database->startTransaction();
         try {
 		  $pendaftaran->setNewRevision(TRUE); // enabling revision for the entity save.
 	      $pendaftaran->setRevisionCreationTime(REQUEST_TIME);
-		  //$pendaftaran->setRevisionLogMessage('Our custom message for entity save.'); // Setting the log message for the revision
+		  $pendaftaran->set('revision_user', \Drupal::currentUser()->id());
+
           $pendaftaran->save();
 		  $this->messenger()->addMessage($this->t('Selamat pendaftaran anda sudah diupdate.'));
         }

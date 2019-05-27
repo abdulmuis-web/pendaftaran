@@ -6,3 +6,13 @@ package: 'PPDB'
 dependencies:
   - wilayah_indonesia_vilage
   - kompetensi_keahlian
+  - zonasi
+  - zona
+  - prodi_sekolah
+  - jalur_pendaftaran
+  - sktm
+  - juara
+  - tingkat
+  - penyelenggara
+  - block_exclude_pages
+
